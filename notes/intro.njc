@@ -1,0 +1,58 @@
+
+What is this?
+
+Press down to see the anwser
+
+--
+
+That was a question, this is the answer
+
+Press down to see the note
+
+???
+
+This is an optional note
+
+Press right to go to the next question
+
+Press up to go to the answer
+
+Up again for the question
+
+---
+
+Where is this coming from?
+
+--
+
+This is the content of the file in `notes/intro.njc`
+
+---
+
+How to load another file?
+
+--
+
+change the value of `?file=` for some other file in that folder and reload
+
+For example change it to [`?file=some-notes.njc`](/?file=some-notes.njc)
+
+---
+
+What is *This* **format**?
+
+--
+
+Its' [Markdown](https://www.markdownguide.org/basic-syntax/)
+
+You can use it everywhere
+
+---
+
+Where to learn more?
+
+--
+
+At [github.com/marianoguerra/nj-cards](https://github.com/marianoguerra/nj-cards)
+
+

@@ -62,16 +62,23 @@ async function loadFile(path) {
   const cards = parseCards(await (await fetch("notes/" + path)).text()),
     slides = Reveal.getSlidesElement();
 
-  console.log(cards);
+  slides.innerHTML = "";
+
   for (const { q, a, note } of cards) {
     const card = qa(md(q), md(a), note ? md(note) : undefined);
     slides.appendChild(card.toDOM());
   }
 
+    slides.appendChild(slide("🏁"));
+
   Reveal.sync();
+
   for (const plugin of Object.values(Reveal.getPlugins())) {
     plugin.convertSlides();
   }
+
+  Reveal.right();
+  Reveal.left();
 }
 
 class QA {

@@ -5,7 +5,9 @@ Press down to see the anwser
 
 --
 
-That was a question, this is the answer
+That was a question
+
+This is the answer
 
 Press down to see the note
 
@@ -27,23 +29,29 @@ Where is this coming from?
 
 This is the content of the file in `notes/intro.njc`
 
+Go and check it out
+
 ---
 
 How to load another file?
 
 --
 
-change the value of `?file=` for some other file in that folder and reload
+Change the value of `?file=` in the address bar
 
-For example change it to [`?file=some-notes.njc`](/?file=some-notes.njc)
+For example change it to
+
+[`?file=some-notes.njc`](/?file=some-notes.njc)
+
+And press enter (or click the link above)
 
 ---
 
-What is *This* **format**?
+What is *This* **formatting**?
 
 --
 
-Its' [Markdown](https://www.markdownguide.org/basic-syntax/)
+It's [Markdown](https://www.markdownguide.org/basic-syntax/)
 
 You can use it everywhere
 

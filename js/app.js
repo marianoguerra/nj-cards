@@ -1,5 +1,7 @@
 import Reveal from "../deps/reveal.js";
 import Markdown from "../deps/reveal-plugin-md.js";
+import { parse } from "./guitarcode.js";
+import { SVGuitarChord } from "../deps/svguitar.js";
 
 function toDOM(v) {
   if (v === null || v === undefined) {
@@ -43,6 +45,8 @@ function main() {
     backgroundTransition: "none",
   });
 
+  Reveal.getPlugin("markdown").marked.use(markedSVGuitarChordFormat());
+
   const params = new URLSearchParams(location.search),
     file = params.get("file"),
     curFile = file ??
@@ -58,6 +62,24 @@ function main() {
   loadFile(curFile);
 }
 
+function markedSVGuitarChordFormat() {
+  return {
+    renderer: {
+      code(code, info, escaped) {
+        if (info !== "guitar-chord") {
+          return false;
+        }
+
+        const node = ce("div", {style: 'height: 80vh;display:inline-flex'});
+        const chart = new SVGuitarChord(node),
+          chordConfig = parse(code);
+        chart.chord(chordConfig).draw();
+        return node.outerHTML;
+      },
+    },
+  };
+}
+
 async function loadFile(path) {
   const cards = parseCards(await (await fetch("notes/" + path)).text()),
     slides = Reveal.getSlidesElement();
@@ -69,7 +91,7 @@ async function loadFile(path) {
     slides.appendChild(card.toDOM());
   }
 
-    slides.appendChild(slide("🏁"));
+  slides.appendChild(slide("🏁"));
 
   Reveal.sync();
 

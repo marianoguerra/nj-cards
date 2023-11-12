@@ -70,10 +70,12 @@ function markedSVGuitarChordFormat() {
           return false;
         }
 
-        const node = ce("div", {style: 'height: 80vh;display:inline-flex'});
+        const node = ce("div", {style: 'height:80vh;display:inline-flex;width:100%'});
         const chart = new SVGuitarChord(node),
           chordConfig = parse(code);
         chart.chord(chordConfig).draw();
+        const svg = node.childNodes[0];
+        svg.setAttribute('style', 'width:100%;height:100%');
         return node.outerHTML;
       },
     },

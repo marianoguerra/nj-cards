@@ -17,11 +17,9 @@ export function parse(s) {
       }
   }
 
-  console.log(nut);
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i].slice(0, 6);
     frets += 1;
-    console.log(line);
 
     for (let j = 0; j < line.length; j++) {
       const c = line[j];

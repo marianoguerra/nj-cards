@@ -8349,4 +8349,3 @@ var SVGuitarChord = /** @class */ (function () {
 }());
 
 export { ChordStyle, ElementType, FretLabelPosition, OPEN, Orientation, SILENT, SVGuitarChord, Shape };
-//# sourceMappingURL=svguitar.es5.js.map

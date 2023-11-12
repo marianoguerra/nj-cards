@@ -45,7 +45,10 @@ function main() {
     backgroundTransition: "none",
   });
 
-  Reveal.getPlugin("markdown").marked.use(markedSVGuitarChordFormat());
+  Reveal.getPlugin("markdown").marked.use(
+    markedSVGuitarChordFormat(),
+    markedVexFlow(),
+  );
 
   const params = new URLSearchParams(location.search),
     file = params.get("file"),
@@ -70,12 +73,42 @@ function markedSVGuitarChordFormat() {
           return false;
         }
 
-        const node = ce("div", {style: 'height:80vh;display:inline-flex;width:100%'});
-        const chart = new SVGuitarChord(node),
+        const node = ce("div", {
+            style: "height:80vh;display:inline-flex;width:100%",
+          }),
+          chart = new SVGuitarChord(node),
           chordConfig = parse(code);
         chart.chord(chordConfig).draw();
         const svg = node.childNodes[0];
-        svg.setAttribute('style', 'width:100%;height:100%');
+        svg.setAttribute("style", "width:100%;height:100%");
+        return node.outerHTML;
+      },
+    },
+  };
+}
+
+function markedVexFlow() {
+  return {
+    renderer: {
+      code(code, info, escaped) {
+        if (info !== "vextab") {
+          return false;
+        }
+
+        const { Vex, VexTab, Artist } = window.vextab,
+          VF = Vex.Flow,
+          node = ce("div", {
+            style: "height:80vh;display:inline-flex;width:100%",
+          }),
+          renderer = new VF.Renderer(node, VF.Renderer.Backends.SVG),
+          x = 0,
+          y = 0,
+          width = document.querySelector('.slides').clientWidth,
+          artist = new Artist(x, y, width, { scale: 1 }),
+          tab = new VexTab(artist);
+
+        tab.parse(code);
+        artist.render(renderer);
         return node.outerHTML;
       },
     },

@@ -184,14 +184,14 @@ function md(v) {
 }
 
 function parseCard(s) {
-  const [q, rest] = s.split("--\n"),
-    [a, note] = rest.split("???\n");
+  const [q, rest] = s.split("\n--\n"),
+    [a, note] = (rest ?? "").split("\n???\n");
 
   return { q: q.trim(), a: a.trim(), note: (note ?? "").trim() };
 }
 
 function parseCards(s) {
-  const items = s.split("---\n").map((v) => v.trim()).filter((v) => !!v).map(
+  const items = s.split("\n---\n").map((v) => v.trim()).filter((v) => !!v).map(
     (v) => parseCard(v),
   );
   return items;

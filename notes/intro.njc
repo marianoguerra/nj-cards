@@ -40,7 +40,7 @@ Change the value of `?file=` in the address bar
 
 For example change it to
 
-[`?file=some-notes.njc`](/?file=some-notes.njc)
+[`?file=some-notes.njc`](./?file=some-notes.njc)
 
 And press enter (or click the link above)
 

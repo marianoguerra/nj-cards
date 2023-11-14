@@ -20,3 +20,7 @@ fetch-deps:
 fetch PATH URL:
 	wget {{URL}} -O {{PATH}}
 
+sync-tauri:
+	rm -rf tauri/src/deps
+	rm -rf tauri/src/js
+	cp -r deps index.html js tauri/src/

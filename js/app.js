@@ -2,6 +2,7 @@ import Reveal from "../deps/reveal.js";
 import Markdown from "../deps/reveal-plugin-md.js";
 import { parse } from "./guitarcode.js";
 import { SVGuitarChord } from "../deps/svguitar.js";
+import { invoke } from "./server.js";
 
 function toDOM(v) {
   if (v === null || v === undefined) {
@@ -103,7 +104,7 @@ function markedVexFlow() {
           renderer = new VF.Renderer(node, VF.Renderer.Backends.SVG),
           x = 0,
           y = 0,
-          width = document.querySelector('.slides').clientWidth,
+          width = document.querySelector(".slides").clientWidth,
           artist = new Artist(x, y, width, { scale: 1 }),
           tab = new VexTab(artist);
 
@@ -116,7 +117,7 @@ function markedVexFlow() {
 }
 
 async function loadFile(path) {
-  const cards = parseCards(await (await fetch("notes/" + path)).text()),
+  const cards = parseCards(await invoke("load_note", { name: path })),
     slides = Reveal.getSlidesElement();
 
   slides.innerHTML = "";
